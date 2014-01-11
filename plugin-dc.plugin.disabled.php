@@ -1,6 +1,6 @@
 <?php
 /*
-@name PluginDC
+@name PluginMotion
 @author Clément GIRARD <clement.girard4@gmail.com>
 @link https://sites.google.com/site/clementgirard4/
 @licence CC by nc sa
@@ -10,7 +10,7 @@
 //Commande vocal
 
 //Si vous utiliser la base de donnees a ajouter
-//include('PluginDC.class.php');
+//include('PluginMotion.class.php');
 
 //Cette fonction va generer un nouveau element dans le menu horizontal
 
@@ -31,64 +31,44 @@ if (isset($_GET['action'])){ // On les données envoyées
 	}
 }
 					
-function dc_plugin_menu(&$menuItems){
+function motion_plugin_menu(&$menuItems){
 	global $_;
-	$menuItems[] = array('sort'=>10,'content'=>'<a href="index.php?module=PluginDC"><i class="icon-th-large"></i> Plugin Détection</a>');
+	$menuItems[] = array('sort'=>10,'content'=>'<a href="index.php?module=PluginMotion"><i class="icon-th-large"></i> Plugin Détection</a>');
 }
 
 //Cette fonction va generer un nouveau element dans le menu de préférences
-function dc_plugin_setting_menu(){
+function motion_plugin_setting_menu(){
 	global $_;
-	echo '<li '.(isset($_['section']) && $_['section']=='PluginDC'?'class="active"':'').'><a href="setting.php?section=PluginDC"><i class="icon-chevron-right"></i> Plugin Détection</a></li>';
+	echo '<li '.(isset($_['section']) && $_['section']=='PluginMotion'?'class="active"':'').'><a href="setting.php?section=PluginMotion"><i class="icon-chevron-right"></i> Plugin Détection</a></li>';
 	
 }
 
 //Cette fonction décrit le contenu de l'élément du menu de préférence
-function dc_plugin_setting_page(){
+function motion_plugin_setting_page(){
 	global $myUser,$_,$conf;
 	$status = "";
 	
-	if(isset($_['section']) && $_['section']=='PluginDC' ){
+	if(isset($_['section']) && $_['section']=='PluginMotion' ){
 		if($myUser!=false){
 			?>
 
 			<div class="span9 userBloc">
 
 
-				<h1>Plugin Détection Control</h1>
+				<h1>Plugin Activation Motion</h1>
 				<p>Gestion des paramètres</p>  
-
-				<form action="action.php?action=dc_add_dc" method="POST"> 
-					<fieldset>
-						<legend><? echo $description ?></legend>
-
-						<div class="left">
-							</div>
-
-						<div class="clear"></div>
-						<br/>
-							<p style="float: left;"><button type="submit" class="btn"><? echo $button; ?></button>
-							</p>
-							<p style="float: right;"><a class="btn btn-action" href="setting.php?section=PluginDC&action=On"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn btn-danger" href="setting.php?section=PluginDC&action=Off">Désactiver la surveillance</a>
-							</p>
-					</fieldset>
-					<br/>
-				</form>
 
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>Surveillance</th>
 							<th>Status</th>
 							<th>Alerte</th>
-							<th></th> 
 						</tr>
 					</thead>
 					<tr>
-						<td></td>
 						<td><?php echo $err; ?></td>
 						<td></td>
-						</tr>
+					</tr>
 					</table>
 <p style="float: right;">
 </p>
@@ -112,9 +92,9 @@ function dc_plugin_setting_page(){
 Plugin::addCss("/css/style.css"); 
 //Plugin::addJs("/js/main.js"); 
 
-Plugin::addHook("setting_menu", "dc_plugin_setting_menu"); //Ajoute un item à la liste du menu de préférence
-Plugin::addHook("setting_bloc", "dc_plugin_setting_page"); //Ajoute le contenu du menu de préférences
-Plugin::addHook("action_post_case", "dc_action_dc"); //Ajoute les actions menu de préférences
+Plugin::addHook("setting_menu", "motion_plugin_setting_menu"); //Ajoute un item à la liste du menu de préférence
+Plugin::addHook("setting_bloc", "motion_plugin_setting_page"); //Ajoute le contenu du menu de préférences
+Plugin::addHook("action_post_case", "motion_action_motion"); //Ajoute les actions menu de préférences
 
 //Plugin::addHook("action_post_case", "dc_action");    
 //Plugin::addHook("vocal_command", "dc_vocal_command");
