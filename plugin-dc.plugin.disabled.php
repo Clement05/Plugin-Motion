@@ -74,13 +74,12 @@ function dc_plugin_setting_page(){
 
 					if (isset($_GET['save'])){ // On les données envoyées
 					  if ($_GET['save']=="true"){
-					  $output = shell_exec('sudo service motion start');
-echo $output;
+					 exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
 					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
 echo shell_exec($contents);
 
-						exec('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
+						
 						
 						system('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
 						}
