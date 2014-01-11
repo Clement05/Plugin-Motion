@@ -14,7 +14,23 @@
 
 //Cette fonction va generer un nouveau element dans le menu horizontal
 
-//phpinfo();
+//Récupération des variables
+if (isset($_GET['save'])){
+  if ($_GET['save']=="true"){
+
+	passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh", $err);
+	if ($err != 0) echo 'erreur '.$err;
+	$status = $err;
+	}
+}
+if (isset($_GET['reset'])){ // On les données envoyées
+  if ($_GET['reset']=="true"){
+	passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh", $err);
+	if ($err != 0) echo 'erreur '.$err;
+	$status = $err;
+	}
+}
+					
 function dc_plugin_menu(&$menuItems){
 	global $_;
 	$menuItems[] = array('sort'=>10,'content'=>'<a href="index.php?module=PluginDC"><i class="icon-th-large"></i> Plugin Détection</a>');
@@ -64,9 +80,13 @@ function dc_plugin_setting_page(){
 						<tr>
 							<th>Surveillance</th>
 							<th>Status</th>
-							<?php echo $status; ?>
 							<th>Alerte</th>
 							<th></th> 
+						</tr>
+						<tr>
+						<td></td>
+						<td><?php echo $status; ?></td>
+						<td></td>
 						</tr>
 					</thead>
 					</table>
@@ -75,21 +95,6 @@ function dc_plugin_setting_page(){
 </div>
 
 				<?php 
-					if (isset($_GET['save'])){ // On les données envoyées
-					  if ($_GET['save']=="true"){
-
-						passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh", $err);
-						if ($err != 0) echo 'erreur '.$err;
-						$status = 1;
-						}
-					}
-					if (isset($_GET['reset'])){ // On les données envoyées
-					  if ($_GET['reset']=="true"){
-						passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh", $err);
-						if ($err != 0) echo 'erreur '.$err;
-						$status = 0;
-						}
-					}
 					
 				}else{ ?>
 
