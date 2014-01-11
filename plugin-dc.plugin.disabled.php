@@ -13,6 +13,8 @@
 //include('PluginDC.class.php');
 
 //Cette fonction va generer un nouveau element dans le menu horizontal
+
+//phpinfo();
 function dc_plugin_menu(&$menuItems){
 	global $_;
 	$menuItems[] = array('sort'=>10,'content'=>'<a href="index.php?module=PluginDC"><i class="icon-th-large"></i> Plugin Détection</a>');
@@ -28,6 +30,7 @@ function dc_plugin_setting_menu(){
 //Cette fonction décrit le contenu de l'élément du menu de préférence
 function dc_plugin_setting_page(){
 	global $myUser,$_,$conf;
+	$status = "";
 	
 	if(isset($_['section']) && $_['section']=='PluginDC' ){
 		if($myUser!=false){
@@ -61,6 +64,7 @@ function dc_plugin_setting_page(){
 						<tr>
 							<th>Surveillance</th>
 							<th>Status</th>
+							<?php echo $status; ?>
 							<th>Alerte</th>
 							<th></th> 
 						</tr>
@@ -71,27 +75,20 @@ function dc_plugin_setting_page(){
 </div>
 
 				<?php 
-
 					if (isset($_GET['save'])){ // On les données envoyées
 					  if ($_GET['save']=="true"){
-					  //exec('service motion start');
-					 //exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
-					  echo "trou";
-					  $output = shell_exec('cd plugins/Plugin-DetectionControl');
-					  $output = shell_exec('ls');
-echo "<pre>$output</pre>";
-					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
-echo shell_exec('sh '.$contents);
 
-						
-						
-						//system('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
+						passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh", $err);
+						if ($err != 0) echo 'erreur '.$err;
+						$status = 1;
 						}
 					}
 					if (isset($_GET['reset'])){ // On les données envoyées
 					  if ($_GET['reset']=="true"){
-$contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh');
-echo shell_exec('sh '.$contents);			}
+						passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh", $err);
+						if ($err != 0) echo 'erreur '.$err;
+						$status = 0;
+						}
 					}
 					
 				}else{ ?>
