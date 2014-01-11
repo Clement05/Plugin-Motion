@@ -1,0 +1,37 @@
+1 installer motion 
+Pour ça j'ai suivi le tuto ici 
+http://blueberry4pi.com/2012/10/29/video-surveillance-avec-raspberry-pi/
+
+démarrer le demon : pour éviter le message d'erreur : 
+[warn] Not starting motion daemon, disabled via /etc/default/motion ... (warning).
+editer le fichier /etc/motion/motion.conf en replacer la valeur de la variable par yes
+
+2 installer et configurer ssmtp pour l'envoie de photos à la détection
+Se créer une adresse gmail pour votre raspberry
+j'ai choisi de suivre ce tuto
+http://iqjar.com/jar/sending-emails-from-the-raspberry-pi/
+sur les indications suivies ici http://forum.idleman.fr/discussion/comment/1263
+j'ai pu éditer le fichier montion.conf pour qu'il envoie des captures lors de la détection de changement de pixel
+
+3 activier et desactiver motion
+j'ai créé deux fichiers 
+
+start.sh 
+#! /bin/bash
+# Start Caption
+sudo service motion start
+
+stop.sh
+#! /bin/bash
+#Stop motion
+sudo service motion stop
+
+je me suis donné les droits 777 (à tester avec 755) sur ces deux fichiers
+
+puis j'ai mis une exception de d'éxécution sur les chemins absolus pour lancer les .sh
+pour cela il faut éditer /etc/sudoers et ajouter l'utilisateur www-data pour qu'appache puisse exécuter les script shell
+j'ai suivi les instruction de la discussion ici http://forum.tplpc.com/index.php/topic/15643-lancer-une-commande-root-dans-script-php/
+(j'ai bien galéré avec shell_exec et exec pour essayer de passer une commande sudo depuis php finalement de façon violante en mettant les droit 777, 
+modifiant sudoers et utilisant passthru ça marche)
+
+Sur l'action d'un bouton je déclenche le script php qui va éxécuter mes fichiers
