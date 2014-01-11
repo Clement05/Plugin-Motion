@@ -15,16 +15,16 @@
 //Cette fonction va generer un nouveau element dans le menu horizontal
 
 //Récupération des variables
-if (isset($_GET['save'])){
-  if ($_GET['save']=="true"){
+if (isset($_GET['action'])){
+  if ($_GET['action']=="On"){
 
 	passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh", $err);
 	if ($err != 0) echo 'erreur '.$err;
 	$status = $err;
 	}
 }
-if (isset($_GET['reset'])){ // On les données envoyées
-  if ($_GET['reset']=="true"){
+if (isset($_GET['action'])){ // On les données envoyées
+  if ($_GET['action']=="Off"){
 	passthru("sudo -u root /var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh", $err);
 	if ($err != 0) echo 'erreur '.$err;
 	$status = $err;
@@ -69,7 +69,7 @@ function dc_plugin_setting_page(){
 						<br/>
 							<p style="float: left;"><button type="submit" class="btn"><? echo $button; ?></button>
 							</p>
-							<p style="float: right;"><a class="btn" href="setting.php?section=PluginDC&save=true"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn" href="setting.php?section=PluginDC"><i class="icon-remove icon-black"></i> Annuler</a>
+							<p style="float: right;"><a class="btn btn-sucess" href="setting.php?section=PluginDC&action=On"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn btn-danger" href="setting.php?section=PluginDC&action=Off">Désactiver la surveillance</a>
 							</p>
 					</fieldset>
 					<br/>
@@ -85,12 +85,12 @@ function dc_plugin_setting_page(){
 						</tr>
 						<tr>
 						<td></td>
-						<td><?php echo $status; ?></td>
+						<td><?php echo $err; ?></td>
 						<td></td>
 						</tr>
 					</thead>
 					</table>
-<p style="float: right;"><a class="btn btn-danger" href="setting.php?section=PluginDC&reset=true">Reset</a>
+<p style="float: right;">
 </p>
 </div>
 
