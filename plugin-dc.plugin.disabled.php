@@ -75,7 +75,7 @@ function dc_plugin_setting_page(){
 					if (isset($_GET['save'])){ // On les données envoyées
 					  if ($_GET['save']=="true"){
 					  exec('ls -la', $outputArray);
-echo($outputArray);
+print_r($outputArray);
 					 exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
 					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
