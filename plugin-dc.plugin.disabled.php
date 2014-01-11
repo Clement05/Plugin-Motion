@@ -74,21 +74,20 @@ function dc_plugin_setting_page(){
 
 					if (isset($_GET['save'])){ // On les données envoyées
 					  if ($_GET['save']=="true"){
-					  exec('service motion start', $outputArray);
-print_r($outputArray);
-					 exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
+					  exec('service motion start');
+					 //exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
-					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
-echo shell_exec($contents);
+					  //$contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
+//echo shell_exec($contents);
 
 						
 						
-						system('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
+						//system('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
 						}
 					}
 					if (isset($_GET['reset'])){ // On les données envoyées
 					  if ($_GET['reset']=="true"){
-						dc_reset_constant();
+						exec('service motion stop');
 						}
 					}
 					
