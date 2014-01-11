@@ -78,7 +78,7 @@ function dc_plugin_setting_page(){
 					 //exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
 					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
-echo shell_exec($contents);
+echo shell_exec('sh '.$contents);
 
 						
 						
@@ -88,7 +88,7 @@ echo shell_exec($contents);
 					if (isset($_GET['reset'])){ // On les données envoyées
 					  if ($_GET['reset']=="true"){
 $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh');
-echo shell_exec($contents);			}
+echo shell_exec('sh '.$contents);			}
 					}
 					
 				}else{ ?>
