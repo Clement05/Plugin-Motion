@@ -74,7 +74,7 @@ function dc_plugin_setting_page(){
 
 					if (isset($_GET['save'])){ // On les données envoyées
 					  if ($_GET['save']=="true"){
-					  exec('ls -la', $outputArray);
+					  exec('service motion start', $outputArray);
 print_r($outputArray);
 					 exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
