@@ -87,8 +87,7 @@ function dc_plugin_setting_page(){
 					}
 					if (isset($_GET['reset'])){ // On les données envoyées
 					  if ($_GET['reset']=="true"){
-$contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh');
-echo shell_exec($contents);						}
+system('/var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh');				}
 					}
 					
 				}else{ ?>
