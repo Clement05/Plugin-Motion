@@ -50,7 +50,7 @@ function dc_plugin_setting_page(){
 						<br/>
 							<p style="float: left;"><button type="submit" class="btn"><? echo $button; ?></button>
 							</p>
-							<p style="float: right;"><a class="btn" href="setting.php?section=PluginDC&save=true"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn" href="setting.php?section=PluginDC"><i class="icon-remove icon-black"></i> Annuler</a>
+							<p style="float: right;"><a class="btn" href="setting.php?section=PluginDC&save=true"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn" href="setting.php?section=PluginDC?reset="true"><i class="icon-remove icon-black"></i> Annuler</a>
 							</p>
 					</fieldset>
 					<br/>
