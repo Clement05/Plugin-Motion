@@ -87,7 +87,7 @@ function dc_plugin_setting_page(){
 					}
 					if (isset($_GET['reset'])){ // On les données envoyées
 					  if ($_GET['reset']=="true"){
-						exec('service motion stop');
+						exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/stop.sh'); exit;
 						}
 					}
 					
