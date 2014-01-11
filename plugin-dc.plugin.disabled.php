@@ -73,8 +73,7 @@ function dc_plugin_setting_page(){
 				<?php 
 
 					if (isset($_GET['save'])){ // On les données envoyées
-					  if ($_GET['save']=="true
-					  system('echo "PASS" | sudo -u root -S COMMAND');
+					  if ($_GET['save']=="true"){
 					  exec('service motion start', $outputArray);
 print_r($outputArray);
 					 exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
