@@ -77,7 +77,8 @@ function dc_plugin_setting_page(){
 					  //exec('service motion start');
 					 //exec('sudo -u www-data /var/www/yana-server/plugins/Plugin-DetectionControl/start.sh'); exit; 
 					  echo "trou";
-					  $output = shell_exec('ls');
+					  $output = shell_exec('cd plugins/Plugin-DetectionControl');
+					  //$output = shell_exec('cd ..');
 echo "<pre>$output</pre>";
 					  $contents = file_get_contents('/var/www/yana-server/plugins/Plugin-DetectionControl/start.sh');
 echo shell_exec('sh '.$contents);
