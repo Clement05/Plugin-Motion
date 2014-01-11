@@ -69,7 +69,7 @@ function dc_plugin_setting_page(){
 						<br/>
 							<p style="float: left;"><button type="submit" class="btn"><? echo $button; ?></button>
 							</p>
-							<p style="float: right;"><a class="btn btn-sucess" href="setting.php?section=PluginDC&action=On"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn btn-danger" href="setting.php?section=PluginDC&action=Off">Désactiver la surveillance</a>
+							<p style="float: right;"><a class="btn btn-action" href="setting.php?section=PluginDC&action=On"<i class="icon-check icon-black"></i> Activer la surveillance</a><a class="btn btn-danger" href="setting.php?section=PluginDC&action=Off">Désactiver la surveillance</a>
 							</p>
 					</fieldset>
 					<br/>
@@ -83,12 +83,12 @@ function dc_plugin_setting_page(){
 							<th>Alerte</th>
 							<th></th> 
 						</tr>
-						<tr>
+					</thead>
+					<tr>
 						<td></td>
 						<td><?php echo $err; ?></td>
 						<td></td>
 						</tr>
-					</thead>
 					</table>
 <p style="float: right;">
 </p>
